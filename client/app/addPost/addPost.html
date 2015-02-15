@@ -1,0 +1,10 @@
+<form ng-submit="addpost.addPost()" name="addPostForm">
+        <h4 class="modal-title">Добавление нового объявления</h4>   
+        <div class="form-group">
+            <input class="form-control field" placeholder="Заголовок" name="Title" ng-model="addpost.title" required/>
+        </div>
+        <div class="form-group">
+            <textarea class="form-control field add-text" placeholder="Текст" name="Text" ng-model="addpost.text" required></textarea>
+        </div>
+        <button type="submit" ng-disabled="addPostForm.$invalid" class="btn btn-primary-custom">Добавить</button>
+</form>

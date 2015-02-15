@@ -6,5 +6,5 @@ angular.module('billboard')
       .when('/login', {
         templateUrl: 'client/app/login/login.html',
         login: true
-      });
+      })
   });

@@ -2,15 +2,6 @@
 ini_set('display_errors', '1');
 require 'vendor/autoload.php';
 
-// the blog post class
-class User {
-
-  var $Login;
-  var $Password;
-
-}
-
-
 $uri    = "mongodb://tcar:kutikula123@ds063180.mongolab.com:63180/billboard";
 $client = new MongoClient($uri);
 $dbname = $client->selectDB('billboard');
@@ -35,6 +26,31 @@ $app->post('/posts', function () use ($app, $dbname) {
     $app->response->setBody(json_encode($userPosts));
 });
 
+$app->post('/post', function () use ($app, $dbname) {
+	$posts = $dbname->posts;
+    $req   = json_decode($app->request->getBody());
+    $dbname->posts->insert(array(
+    	'UserId' 		 => $req->userId,
+    	'Title'  		 => $req->title,
+    	'Text'	 		 => $req->text,
+    	'DateCreation'   => $req->dateCreation
+    ));
+});
+
+$app->delete('/post/:postId', function ($postId) use ($app, $dbname) {
+	$posts = $dbname->posts;
+    $dbname->posts->remove(array(
+        '_id' => new MongoId($postId)
+    ));
+});
+
+$app->put('/post/:postId', function ($postId) use ($app, $dbname) {
+    $posts = $dbname->posts;
+    $req   = json_decode($app->request->getBody());
+    $newData = array('$set' => array('Title' => $req->post->Title, 'Text'  => $req->post->Text));
+    $dbname->posts->update(array('_id' => new MongoId($postId)), $newData);
+});
+
 $app->get('/login', function () use ($app) {
     readfile('client/index.html');
 });
@@ -47,31 +63,15 @@ $app->get('/friends', function () use ($app) {
     readfile('client/index.html');
 });
 
-// $app->post('/registration', function () use ($app, $dbname) {
-//     $req = json_decode($app->request->getBody());
-//     $user = $dbname->users->findOne(array('Login' => $req->login));
-//     if ($user['Login'] === $req->login) {
-//     	$app->response->setBody(json_encode($user));
-//     }
-//     else {
-//     	// $app->response->setBody(json_encode($user));
-//     	$post = new User();
-//     	$post->Login = $req->login;
-//     	$post->Password = $req->password;
-//     	$new_user = $post->save();
-//     	$app->response->setBody(json_encode($new_user));
-//     }
-// });
-
-$app->get('/allusers', function () use ($app, $dbname) {
-    $allusers = array();
-    foreach ($dbname->users->find() as $user) {
-        $allusers[] = $user['Login'];
-    }
-    $app->response->setBody(json_encode($allusers));
+$app->get('/post', function () use ($app) {
+    readfile('client/index.html');
 });
 
-
+$app->get('/post/:postId', function ($postId) use ($app, $dbname) {
+    $posts = $dbname->posts;
+    $post  = $posts->findOne(array('_id' => new MongoId($postId)));
+    $app->response->setBody(json_encode($post));
+});
 
 $app->run();
 

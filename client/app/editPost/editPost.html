@@ -1,0 +1,10 @@
+<form ng-submit="editpost.editPost(editpost.post._id.$id)" name="editPostForm">
+    <h4 class="modal-title">Редактирование объявления</h4>   
+    <div class="form-group">
+        <input class="form-control field" placeholder="Заголовок" name="Title" ng-model="editpost.post.Title" required/>
+    </div>
+    <div class="form-group">
+        <textarea class="form-control field add-text" placeholder="Текст" name="Text" ng-model="editpost.post.Text" required></textarea>
+    </div>
+    <button type="submit" ng-disabled="editPostForm.$invalid" class="btn btn-primary-custom">Сохранить</button>
+</form>

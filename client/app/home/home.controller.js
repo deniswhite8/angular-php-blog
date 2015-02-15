@@ -1,14 +1,20 @@
 'use strict';
 
 angular.module('billboard')
-  .controller('HomeCtrl', function($http, user) {
+  .controller('HomeCtrl', function($location, $route, $http, user) {
   	var self = this;
   	self.posts = [];
+
   	$http.post('/posts', {
   		userId: user.current.user_id
   	}).success(function(data){
   		self.posts = data;
-  		console.log(self.posts[0].Title);
   	});
+
+  	self.deletePost = function(postId, index){
+  		$http.delete('/post/' + postId).success(function(){
+        self.posts.splice(index, 1);
+  		});
+  	};
   })
 
