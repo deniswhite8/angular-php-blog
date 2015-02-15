@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well login-box">
+                <form ua-signup ng-show="!verificationEmailSent">
+                    <legend>Sign Up</legend>
+                    <div class="form-group">
+                        <label for="firstName">Username</label>
+                        <input id="firstName" name="first_name" placeholder="First name" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="login">Email</label>
+                        <input id="login" ua-is-email name="login" placeholder="Email" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input id="password" name="password" placeholder="Password" type="password" class="form-control" />
+                    </div>
+                    <div class="form-group text-center">
+                        <p ng-show="loading"><img src="https://app.userapp.io/img/ajax-loader-transparent.gif"></p>
+                        <p ng-show="error">{{ error.message }}</p>
+                        <input type="submit" class="btn btn-success btn-login-submit" value="Sign Up" />
+                    </div>
+                </form>
+                <p ng-show="verificationEmailSent">An email has been sent to your inbox. Click on the link to verify your account.</p>
+                <p><a href="/login">Log in</a></p>
+            </div>
+        </div>
+    </div>
+</div>

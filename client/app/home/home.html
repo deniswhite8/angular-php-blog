@@ -1,10 +1,22 @@
-<div class="yeogurt-info">
-  <h1>Welcome to Yeogurt!</h1>
-  <p>
-    Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---" data-bypass>documentation</a> and start mixing up something awesome.
-  </p>
-  <p>
-    <img src="/images/yeogurt-swirl.png" width="75px" class="logo" />
-  </p>
+<div class="panel panel-info" data-ng-repeat="post in home.posts">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{post.Title}}</h3>
+    </div>
+    <div class="panel-body">
+        <div class="post-img">
+            <img data-ng-src="{{post.ImagePath}}" alt="post.Title" />
+        </div>
+        <div class="post-text">{{post.Text}}</div>
+    </div>
+<!--     <div class="panel-footer clearfix">
+        <div class="post-time-ago float-left">{{post.DateCreation | fromNow}} от <a href="javascript:void(0)" class="navbar-link">{{home.post.UserLogin}}</a></div>
+        <div data-ng-if="home.post.UserId == user.user_id" class="post-administration float-right">
+            <a data-ng-click="edit(post.Id)" href="javascript:void(0)" class="navbar-link">Редактировать</a> / <a data-ng-click="delete(post.Id)" href="javascript:void(0)" class="navbar-link">Удалить</a>
+        </div>
+    </div> -->
 </div>
-<code class="version">v0.14.2</code>
+
+<div class="empty-posts">
+    <h1 data-ng-if="!home.posts.length">Нет добавленных новостей</h1>
+</div>
+

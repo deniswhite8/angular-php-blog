@@ -5,6 +5,7 @@ angular.module('billboard')
     $routeProvider
       .when('/', {
         templateUrl: 'client/app/home/home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        controllerAs: 'home'
       });
   });

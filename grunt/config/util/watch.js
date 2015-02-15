@@ -17,12 +17,11 @@ var taskConfig = function(grunt) {
         interrupt: true
       },
       tasks: [
-        'wiredep',
         'serve:nowatch'
       ]
     },
     sass: {
-      files: ['<%= yeogurt.client %>/styles/**/*.{scss,sass}'],
+      files: ['<%= yeogurt.client %>/**/*.{scss,sass}'],
       tasks: [
         'injector:sass',
         'sass:server',
