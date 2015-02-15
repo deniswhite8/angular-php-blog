@@ -1,11 +1,14 @@
 <div class="all-users">
     <ul>
-        <li data-ng-repeat="user in friends.users">{{user}}<a data-ng-click="addFriend(user.Id)" href="javascript:void(0)" class="glyphicon glyphicon-plus"></a></li>
+        <li data-ng-repeat="friend in friends.users" ng-if="user.user_id !== friend.user_id">
+            {{friend.first_name}}
+            <a data-ng-click="addFriend(friend.user_id)" href="javascript:void(0)" class="glyphicon glyphicon-plus"></a>
+        </li>
     </ul>
 </div>
 
 
-<div class="panel panel-info" data-ng-repeat="friend in friends">
+<!-- <div class="panel panel-info" data-ng-repeat="friend in friends">
     <div class="panel-heading">
         <h3 class="panel-title clearfix">
             <span class="float-left" data-ng-bind="friend.Login"></span>
@@ -15,4 +18,4 @@
     <div class="panel-body">
         <a href="/friends/{{friend.Login}}">Посмотреть ленту друга</a>
     </div>
-</div>
+</div> -->

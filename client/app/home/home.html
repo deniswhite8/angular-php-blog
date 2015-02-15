@@ -1,12 +1,12 @@
 <div class="panel panel-info" data-ng-repeat="post in home.posts">
     <div class="panel-heading">
-        <h3 class="panel-title">{{post.Title}}</h3>
+        <a href="/post/{{$index}}" class="panel-title">{{post.Title}}</a>
     </div>
     <div class="panel-body">
-        <div class="post-text">{{post.Text}}</div>
+        <div class="post-text">{{post.Text | limitTo:200}}</div>
     </div>
     <div class="panel-footer clearfix">
-        <div class="post-time-ago float-left"> от <a href="javascript:void(0)" class="navbar-link">{{post.UserLogin}}</a></div>
+        <div class="post-time-ago float-left">{{post.DateCreation | date : 'd MMMM y H:mm:ss'}} от <a href="javascript:void(0)" class="navbar-link">{{user.first_name}}</a></div>
         <div data-ng-if="post.UserId == user.user_id" class="post-administration float-right">
             <a href="/post/{{post._id.$id}}" class="navbar-link">Редактировать</a> / <a data-ng-click="home.deletePost(post._id.$id, $index)" href="javascript:void(0)" class="navbar-link">Удалить</a>
         </div>

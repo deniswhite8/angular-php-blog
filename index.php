@@ -6,6 +6,8 @@ $uri    = "mongodb://tcar:kutikula123@ds063180.mongolab.com:63180/billboard";
 $client = new MongoClient($uri);
 $dbname = $client->selectDB('billboard');
 
+$api = new \UserApp\API('54e0a91dd2235', 'g4EkA_oqSrCw38SZXObpuw');
+
 $app = new \Slim\Slim(array(
     'debug' => true
 ));
@@ -65,6 +67,21 @@ $app->get('/friends', function () use ($app) {
 
 $app->get('/post', function () use ($app) {
     readfile('client/index.html');
+});
+
+$app->get('/allusers', function () use ($app, $api) {
+    $search_result = $api->user->search(array(
+       "filters" => array(
+           "query" => "*"
+       )
+    ));
+    $users = [];
+    foreach($search_result->items as $items) {
+        $users[] = $api->user->get(array(
+            "user_id" => $items->user_id
+        ))[0];
+    }
+    $app->response->setBody(json_encode($users));
 });
 
 $app->get('/post/:postId', function ($postId) use ($app, $dbname) {

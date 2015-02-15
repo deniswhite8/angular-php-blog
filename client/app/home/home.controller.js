@@ -4,7 +4,7 @@ angular.module('billboard')
   .controller('HomeCtrl', function($location, $route, $http, user) {
   	var self = this;
   	self.posts = [];
-
+    
   	$http.post('/posts', {
   		userId: user.current.user_id
   	}).success(function(data){
