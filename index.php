@@ -70,13 +70,8 @@ $app->get('/post', function () use ($app) {
 });
 
 $app->get('/allusers', function () use ($app, $api) {
-    $search_result = $api->user->search(array(
-       "filters" => array(
-           "query" => "*"
-       )
-    ));
     $users = [];
-    foreach($search_result->items as $items) {
+    foreach($api->user->search()->items as $items) {
         $users[] = $api->user->get(array(
             "user_id" => $items->user_id
         ))[0];
