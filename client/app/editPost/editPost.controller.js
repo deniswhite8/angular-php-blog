@@ -3,16 +3,15 @@
 angular.module('billboard')
   .controller('EditPostCtrl', function($location, $routeParams, $http) {
 
-  	var self = this;
-    self.post = {};
+    this.post = {};
 
     $http.get('/post/' + $routeParams.postId).success(function(data){
-        self.post = data;
-    });
+        this.post = data;
+    }.bind(this));
 
     this.editPost = function(postId){
       $http.put('/post/' + postId, {
-        post: self.post
+        post: this.post
       }).success(function(data){
         $location.path('/');
       });

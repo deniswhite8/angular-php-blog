@@ -1,20 +1,30 @@
 'use strict';
 
 angular.module('billboard')
-  .controller('HomeCtrl', function($location, $route, $http, user) {
-  	var self = this;
-  	self.posts = [];
+  .controller('HomeCtrl', function($route, $http, user) {
+
+  	this.posts = [];
+    this.isPostsEmpty = false;
     
   	$http.post('/posts', {
   		userId: user.current.user_id
   	}).success(function(data){
-  		self.posts = data;
-  	});
+      if (data.length) {
+        this.posts = data;
+        this.isPostsEmpty = false;
+      }
+      else {
+        this.isPostsEmpty = true;
+      }
+  	}.bind(this));
 
-  	self.deletePost = function(postId, index){
+  	this.deletePost = function(postId, index){
   		$http.delete('/post/' + postId).success(function(){
-        self.posts.splice(index, 1);
-  		});
+        this.posts.splice(index, 1);
+        if (!this.posts.length) {
+          this.isPostsEmpty = true;
+        }
+  		}.bind(this));
   	};
   })
 
