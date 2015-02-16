@@ -3,7 +3,7 @@
 angular.module('billboard')
   .config(function($routeProvider) {
     $routeProvider
-      .when('/post/:postId', {
+      .when('/editpost/:postId', {
         templateUrl:  'client/app/editPost/editPost.html',
         controller:   'EditPostCtrl',
         controllerAs: 'editpost'

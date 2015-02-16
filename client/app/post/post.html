@@ -1,0 +1,9 @@
+<div class="panel-heading">
+    <h1 class="panel-title">{{post.post.Title}}</h1>
+</div>
+<div class="panel-body">
+    <div class="post-text">{{post.post.Text}}</div>
+</div>
+<div class="panel-footer clearfix">
+    <div class="post-time-ago float-left">{{post.post.DateCreation | date : 'd MMMM y H:mm:ss'}} от <a href="javascript:void(0)" class="navbar-link">{{user.first_name}}</a></div>
+</div>

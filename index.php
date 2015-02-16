@@ -28,7 +28,7 @@ $app->post('/posts', function () use ($app, $dbname) {
     $app->response->setBody(json_encode($userPosts));
 });
 
-$app->post('/post', function () use ($app, $dbname) {
+$app->post('/addpost', function () use ($app, $dbname) {
 	$posts = $dbname->posts;
     $req   = json_decode($app->request->getBody());
     $dbname->posts->insert(array(
@@ -38,6 +38,13 @@ $app->post('/post', function () use ($app, $dbname) {
     	'DateCreation'   => $req->dateCreation
     ));
 });
+
+$app->get('/post/:postId', function ($postId) use ($app, $dbname) {
+    $posts = $dbname->posts;
+    $post  = $posts->findOne(array('_id' => new MongoId($postId)));
+    $app->response->setBody(json_encode($post));
+});
+
 
 $app->delete('/post/:postId', function ($postId) use ($app, $dbname) {
 	$posts = $dbname->posts;
@@ -53,6 +60,7 @@ $app->put('/post/:postId', function ($postId) use ($app, $dbname) {
     $dbname->posts->update(array('_id' => new MongoId($postId)), $newData);
 });
 
+
 $app->get('/login', function () use ($app) {
     readfile('client/index.html');
 });
@@ -65,10 +73,6 @@ $app->get('/friends', function () use ($app) {
     readfile('client/index.html');
 });
 
-$app->get('/post', function () use ($app) {
-    readfile('client/index.html');
-});
-
 $app->get('/allusers', function () use ($app, $api) {
     $users = [];
     foreach($api->user->search()->items as $items) {
@@ -77,12 +81,6 @@ $app->get('/allusers', function () use ($app, $api) {
         ))[0];
     }
     $app->response->setBody(json_encode($users));
-});
-
-$app->get('/post/:postId', function ($postId) use ($app, $dbname) {
-    $posts = $dbname->posts;
-    $post  = $posts->findOne(array('_id' => new MongoId($postId)));
-    $app->response->setBody(json_encode($post));
 });
 
 $app->run();

@@ -3,7 +3,8 @@
 angular.module('billboard', [
   'ngRoute',
   'ui.bootstrap',
-  'UserApp'
+  'UserApp',
+  'angular-loading-bar'
 ])
 
 .config(function($routeProvider, $locationProvider) {

@@ -3,7 +3,7 @@
 angular.module('billboard')
   .controller('AddPostCtrl', function($location, $http, user) {
   	this.addPost = function(){
-  		$http.post('/post', {
+  		$http.post('/addpost', {
   			title: 			this.title,
   			text: 			this.text,
   			userId: 		user.current.user_id,
