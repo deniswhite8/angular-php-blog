@@ -4,7 +4,7 @@ angular.module('billboard')
   .config(function($routeProvider) {
     $routeProvider
       .when('/login', {
-        templateUrl: 'app/login/login.html',
+        templateUrl: 'app/controller/login/login.html',
         login: true
       })
   });
