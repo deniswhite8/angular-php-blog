@@ -26,6 +26,14 @@ angular.module('billboard')
   			return $http.post('/posts', {
 		  		userId: userId
 		  	});
-  		}
+  		},
+      getAllUsers: function(){
+        return $http.get('/allusers');
+      },
+      addFriend: function(obj){
+        return $http.post('/addfriend/' + obj.friendId, {
+          userId: obj.userId
+        });
+      }
   	}
   })
