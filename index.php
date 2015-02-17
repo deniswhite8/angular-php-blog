@@ -60,6 +60,20 @@ $app->put('/post/:postId', function ($postId) use ($app, $dbname) {
     $dbname->posts->update(array('_id' => new MongoId($postId)), $newData);
 });
 
+$app->post('/addfriend/:friendId', function ($friendId) use ($app, $dbname) {
+    $posts = $dbname->posts;
+    $req   = json_decode($app->request->getBody());
+    $userId = $req->userId;
+    $user = $api->user->get(array(
+        "user_id" => $userId
+    ));
+    $dbname->posts->insert(array(
+        'UserId'         => $req->userId,
+        'Title'          => $req->title,
+        'Text'           => $req->text,
+        'DateCreation'   => $req->dateCreation
+    ));
+});
 
 $app->get('/login', function () use ($app) {
     readfile('client/index.html');

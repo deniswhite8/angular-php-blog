@@ -1,15 +1,14 @@
 'use strict';
 
 angular.module('billboard')
-  .controller('AddPostCtrl', function($location, $http, user) {
+  .controller('AddPostCtrl', function($location, $http, user, api) {
   	this.addPost = function(){
-  		$http.post('/addpost', {
-  			title: 			this.title,
-  			text: 			this.text,
-  			userId: 		user.current.user_id,
-  			dateCreation: 	new Date()
-  		}).success(function(){
-  			$location.path('/');
-  		});
+      api.addPost({
+        title:      this.title,
+        text:       this.text,
+        userId:     user.current.user_id
+      }).success(function(){
+        $location.path('/');
+      });
   	};
   });
