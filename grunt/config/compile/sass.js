@@ -11,13 +11,13 @@ var taskConfig = function(grunt) {
         outputStyle: 'nested',
         sourceMap: true,
         includePaths: [
-          '<%= yeogurt.client %>/bower_components',
-          '<%= yeogurt.client %>/styles/',
-          '<%= yeogurt.client %>/app/'
+          'public/bower_components',
+          'public/styles/',
+          'public/app/'
         ]
       },
       files: {
-        '<%= yeogurt.tmp %>/styles/main.css': '<%= yeogurt.client %>/styles/main.{scss,sass}'
+        'public/.tmp/styles/main.css': 'public/styles/main.{scss,sass}'
       }
     },
     dist: {
