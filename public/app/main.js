@@ -2,7 +2,6 @@
 
 angular.module('billboard', [
   'ngRoute',
-  'ui.bootstrap',
   'UserApp',
   'angular-loading-bar'
 ])

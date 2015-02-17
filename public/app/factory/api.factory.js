@@ -11,6 +11,17 @@ angular.module('billboard')
 	  			dateCreation: 	new Date()
 	  		});
   		},
+      getPost: function(postId) {
+        return $http.get('/post/' + postId);
+      },
+      editPost: function(obj) {
+        return $http.put('/post/' + obj.postId, {
+              post: obj.post
+        });
+      },
+      deletePost: function(postId) {
+        return $http.delete('/post/' + postId);
+      },
   		getPosts : function(userId){
   			return $http.post('/posts', {
 		  		userId: userId

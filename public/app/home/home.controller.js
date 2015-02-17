@@ -17,7 +17,7 @@ angular.module('billboard')
   	}.bind(this));
 
   	this.deletePost = function(postId, index){
-  		$http.delete('/post/' + postId).success(function(){
+  		api.deletePost(postId).success(function(){
         this.posts.splice(index, 1);
         if (!this.posts.length) {
           this.isPostsEmpty = true;

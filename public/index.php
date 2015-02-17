@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors', '1');
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 $uri    = "mongodb://tcar:kutikula123@ds063180.mongolab.com:63180/billboard";
 $client = new MongoClient($uri);
@@ -13,7 +13,7 @@ $app = new \Slim\Slim(array(
 ));
 
 $app->get('/', function () use ($app) {
-    readfile('client/index.html');
+    readfile('index.html');
 });
 
 $app->post('/posts', function () use ($app, $dbname) {
@@ -76,15 +76,15 @@ $app->post('/addfriend/:friendId', function ($friendId) use ($app, $dbname) {
 });
 
 $app->get('/login', function () use ($app) {
-    readfile('client/index.html');
+    readfile('index.html');
 });
 
 $app->get('/signup', function () use ($app) {
-    readfile('client/index.html');
+    readfile('index.html');
 });
 
 $app->get('/friends', function () use ($app) {
-    readfile('client/index.html');
+    readfile('index.html');
 });
 
 $app->get('/allusers', function () use ($app, $api) {

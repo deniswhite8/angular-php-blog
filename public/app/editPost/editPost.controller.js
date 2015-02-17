@@ -1,17 +1,18 @@
 'use strict';
 
 angular.module('billboard')
-  .controller('EditPostCtrl', function($location, $routeParams, $http) {
+  .controller('EditPostCtrl', function($location, $routeParams, $http, api) {
 
     this.post = {};
 
-    $http.get('/post/' + $routeParams.postId).success(function(data){
+    api.getPost($routeParams.postId).success(function(data){
         this.post = data;
     }.bind(this));
 
     this.editPost = function(postId){
-      $http.put('/post/' + postId, {
-        post: this.post
+      api.editPost({
+        postId: postId,
+        post:   this.post
       }).success(function(data){
         $location.path('/');
       });

@@ -11,7 +11,10 @@
     "json3": "~3.3.1",
     "jquery": "~1.11.1",
     "angular-loading-bar": "~0.6.0",
-    "ngAnimate": "*"
+    "ngAnimate": "*",
+    "bower": "*",
+    "install": "~1.0.4",
+    "userapp-angular": "~2.0.4"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*"
