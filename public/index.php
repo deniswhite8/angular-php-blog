@@ -104,10 +104,8 @@ $app->post('/addfriend/:friendId', function ($friendId) use ($app, $dbname) {
     else {
         $friends->save([
             'UserId' => $userId,
-            'Friends' => []
+            'Friends' => [$friendId]
         ]);
-        $newData = ['$addToSet' => ['Friends' => $friendId]];
-        $friends->update(['UserId' => $userId], $newData);
     }
 
 });
