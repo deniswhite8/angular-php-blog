@@ -14,7 +14,7 @@ angular.module('billboard')
             friendId: friendId,
             userId:   user.current.user_id
         }).success(function () {
-    		$location.path('/');
+    		console.log('добавлен');
     	});
     };
   });
