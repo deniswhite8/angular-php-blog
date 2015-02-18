@@ -1,12 +1,19 @@
 'use strict';
 
 angular.module('billboard')
-  .controller('FriendsCtrl', function($location, $http, user, api) {
+  .controller('FriendsCtrl', function($route, $http, user, api) {
 
     this.users = [];
+    this.areFriendsEmpty = false;
 
-    api.getAllUsers().success(function(data){
-    	this.users = data;
+    api.getAllUsers(user.current.user_id).success(function(data){
+      if (data.length) {
+        this.users = data;
+        this.areFriendsEmpty = false;
+      }
+      else {
+        this.areFriendsEmpty = true;;
+      }
     }.bind(this));
 
     this.addFriend = function(friendId){
@@ -14,7 +21,7 @@ angular.module('billboard')
             friendId: friendId,
             userId:   user.current.user_id
         }).success(function () {
-    		console.log('добавлен');
+    		$route.reload();
     	});
     };
   });

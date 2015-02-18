@@ -11,9 +11,10 @@
 
     <!-- build:css(client) styles/global.css -->
       <!-- bower:css -->
+      <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css" />
+      <link rel="stylesheet" href="/bower_components/angular-loading-bar/build/loading-bar.css" />
       <!-- endbower -->
     <!-- endbuild -->
-    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
     <link rel="stylesheet" href=".tmp/styles/main.css" />
 
     <!-- build:js(client) app/modernizr.js -->
@@ -59,7 +60,7 @@
                           Welcome, <span class="navbar-link" ng-bind="user.first_name"></span>
                         </p>
                         <p ng-show="user.authenticated" class="navbar-text">
-                          <a href="/friends" class="navbar-link">Друзья</a>
+                          <a href="/friends" class="navbar-link">Добавить друзей</a>
                         </p>
                         <p ng-show="user.authenticated" class="navbar-text">
                           <a href="/addpost" class="navbar-link">Добавить пост</a>
@@ -79,13 +80,12 @@
 
     <!-- build:js(client) app/global.js -->
       <!-- bower:js -->
-      <script src="bower_components/jquery/dist/jquery.js"></script>
-      <script src="bower_components/angular/angular.js"></script>
-      <script src="bower_components/angular-route/angular-route.js"></script>
-      <script src="bower_components/userapp/userapp.client.js"></script>
-      <script src="bower_components/userapp-angular/angularjs.userapp.js"></script>
-      <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
-      <script src="bower_components/json3/lib/json3.js"></script>
+      <script src="/bower_components/jquery/dist/jquery.js"></script>
+      <script src="/bower_components/angular/angular.js"></script>
+      <script src="/bower_components/angular-route/angular-route.js"></script>
+      <script src="/bower_components/angular-loading-bar/build/loading-bar.js"></script>
+      <script src="/bower_components/userapp/userapp.client.js"></script>
+      <script src="/bower_components/userapp-angular/angularjs.userapp.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 

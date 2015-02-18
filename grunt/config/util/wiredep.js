@@ -27,11 +27,11 @@ var taskConfig = function(grunt) {
         }
       },
       src: [
-        '<%= yeogurt.client %>/index.html'
+        'public/index.html'
       ]
     },
     styles: {
-      src: ['<%= yeogurt.client %>/styles/**/*.{scss,sass}'],
+      src: ['public/styles/**/*.{scss,sass}'],
       ignorePath: /client/g,
     }
   });

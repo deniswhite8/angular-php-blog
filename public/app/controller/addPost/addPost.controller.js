@@ -6,7 +6,8 @@ angular.module('billboard')
       api.addPost({
         title:      this.title,
         text:       this.text,
-        userId:     user.current.user_id
+        userId:     user.current.user_id,
+        userName:   user.current.first_name
       }).success(function(){
         $location.path('/');
       });

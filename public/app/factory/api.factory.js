@@ -8,6 +8,7 @@ angular.module('billboard')
 	  			title: 			obj.title,
 	  			text: 			obj.text,
 	  			userId: 		obj.userId,
+          userName:   obj.userName,
 	  			dateCreation: 	new Date()
 	  		});
   		},
@@ -27,8 +28,10 @@ angular.module('billboard')
 		  		userId: userId
 		  	});
   		},
-      getAllUsers: function(){
-        return $http.get('/allusers');
+      getAllUsers: function(userId){
+        return $http.post('/allusers', {
+          userId: userId
+        });
       },
       addFriend: function(obj){
         return $http.post('/addfriend/' + obj.friendId, {

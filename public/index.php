@@ -46,9 +46,10 @@ $app->post('/addpost', function () use ($app, $dbname) {
     $req   = json_decode($app->request->getBody());
 
     $dbname->posts->insert([
-    	'UserId' 		 => $req->userId,
-    	'Title'  		 => $req->title,
-    	'Text'	 		 => $req->text,
+    	'UserId' 		     => $req->userId,
+      'UserName'       => $req->userName,
+    	'Title'  		     => $req->title,
+    	'Text'	 		     => $req->text,
     	'DateCreation'   => $req->dateCreation
     ]);
 
@@ -122,14 +123,38 @@ $app->get('/friends', function () use ($app) {
     readfile('index.html');
 });
 
-$app->get('/allusers', function () use ($app, $api) {
+$app->get('/addpost', function () use ($app) {
+    readfile('index.html');
+});
 
-    $users = [];
+$app->post('/allusers', function () use ($app, $api, $dbname) {
+
+    $friends = $dbname->friends;
+    $users   = [];
+    $userId  = json_decode($app->request->getBody())->userId;
+    $ids     = $friends->findOne(['UserId' => $userId]);
 
     foreach($api->user->search()->items as $items) {
         $users[] = $api->user->get([
             "user_id" => $items->user_id
         ])[0];
+    }
+
+    if (!empty($ids)) {
+      $temp  = [];
+      $count = 0;
+      for ($i = 0; $i< count($users); $i++) {
+        for ($j = 0; $j < count($ids['Friends']); $j++) {
+          if ($users[$i]->user_id != $ids['Friends'][$j] && $users[$i]->user_id != $userId) {
+            ++$count;
+          }
+        }
+        if ($count == count($ids['Friends'])) {
+          $temp[] = $users[$i];
+        }
+        $count = 0;
+      }
+      return $app->response->setBody(json_encode($temp));
     }
 
     $app->response->setBody(json_encode($users));
