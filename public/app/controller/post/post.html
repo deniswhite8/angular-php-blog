@@ -5,5 +5,5 @@
     <div class="post-text">{{post.post.Text}}</div>
 </div>
 <div class="panel-footer clearfix">
-    <div class="post-time-ago float-left">{{post.post.DateCreation | date : 'd MMMM y H:mm:ss'}} от <a href="javascript:void(0)" class="navbar-link">{{post.post.UserName}}</a></div>
+    <div class="post-time-ago float-left">{{post.post.DateCreation | date : 'd MMMM y H:mm:ss'}} от <a href="/user/{{post.post.UserId}}" class="navbar-link">{{post.post.UserName}}</a></div>
 </div>

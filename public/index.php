@@ -161,5 +161,35 @@ $app->post('/allusers', function () use ($app, $api, $dbname) {
 
 });
 
+$app->get('/user/:userId', function($userId) use ($app, $api, $dbname){
+
+  $posts      = $dbname->posts;
+  $friends    = $dbname->friends;
+  $friendsIds = $friends->findOne(['UserId' => $userId])['Friends'];
+
+  $result     = [
+    'PostsCount'   => 0,
+    'FriendsCount' => count($friendsIds),
+    'UserName'     => '',
+    'UserEmail'    => ''
+  ];
+
+  foreach ($posts->find() as $post) {
+    if ($post['UserId'] == $userId) {
+      ++$result['PostsCount'];
+    }
+  }
+
+  $userInfo = $api->user->get([
+    "user_id" => $userId
+  ])[0];
+
+  $result['UserEmail'] = $userInfo->email;
+  $result['UserName']  = $userInfo->first_name;
+
+  $app->response->setBody(json_encode($result));
+
+});
+
 $app->run();
 

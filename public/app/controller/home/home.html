@@ -6,7 +6,7 @@
         <div class="post-text">{{post.Text | limitTo:200}}</div>
     </div>
     <div class="panel-footer clearfix">
-        <div class="post-time-ago float-left">{{post.DateCreation | date : 'd MMMM y H:mm:ss'}} от <a href="javascript:void(0)" class="navbar-link">{{post.UserName}}</a></div>
+        <div class="post-time-ago float-left">{{post.DateCreation | date : 'd MMMM y H:mm:ss'}} от <a href="/user/{{post.UserId}}" class="navbar-link">{{post.UserName}}</a></div>
         <div data-ng-if="post.UserId == user.user_id" class="post-administration float-right">
             <a href="/editpost/{{post._id.$id}}" class="navbar-link">Редактировать</a> / <a data-ng-click="home.deletePost(post._id.$id, $index)" href="javascript:void(0)" class="navbar-link">Удалить</a>
         </div>
