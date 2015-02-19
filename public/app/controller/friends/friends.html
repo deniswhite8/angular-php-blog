@@ -1,7 +1,7 @@
 <div class="all-users">
     <ul>
         <li data-ng-repeat="friend in friends.users" ng-if="user.user_id !== friend.user_id">
-            {{friend.first_name}}
+            <a href="/user/{{friend.user_id}}">{{friend.first_name}}</a>
             <a data-ng-click="friends.addFriend(friend.user_id)" href="javascript:void(0)" class="glyphicon glyphicon-plus"></a>
         </li>
     </ul>
