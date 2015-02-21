@@ -38,6 +38,11 @@ angular.module('billboard')
           userId: obj.userId
         });
       },
+      deleteFriend: function (obj) {
+        return $http.put('/deletefriend/' + obj.friendId, {
+          userId: obj.userId
+        });
+      },
       getUser: function (userId) {
         return $http.get('/user/' + userId);
       }

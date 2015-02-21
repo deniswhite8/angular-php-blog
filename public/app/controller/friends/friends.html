@@ -1,22 +1,12 @@
 <div class="all-users">
-    <ul>
-        <li data-ng-repeat="friend in friends.users" ng-if="user.user_id !== friend.user_id">
-            <a href="#/user/{{friend.user_id}}">{{friend.first_name}}</a>
-            <a data-ng-click="friends.addFriend(friend.user_id)" href="javascript:void(0)" class="glyphicon glyphicon-plus"></a>
-        </li>
-    </ul>
-    <p ng-if="friends.areFriendsEmpty">Все пользователи у вас в друзьях</p>
+  <ul>
+    <li data-ng-repeat="friend in friends.users" ng-if="user.user_id !== friend.user_id">
+      
+      <a href="#/user/{{friend.user_id}}">{{friend.first_name}}</a>
+      <span ng-if="friend.properties.isFriend.value == true"> добавлен в друзья</span>
+      <button ng-if="friend.properties.isFriend.value == true" data-ng-click="friends.deleteFriend(friend.user_id)" class="btn btn-danger">Удалить</button>
+      <button ng-if="friend.properties.isFriend.value != true" data-ng-click="friends.addFriend(friend.user_id)" class="btn btn-primary">Добавить в друзья</button>
+    </li>
+  </ul>
+  <p ng-if="friends.areFriendsEmpty">Все пользователи у вас в друзьях</p>
 </div>
-
-
-<!-- <div class="panel panel-info" data-ng-repeat="friend in friends">
-    <div class="panel-heading">
-        <h3 class="panel-title clearfix">
-            <span class="float-left" data-ng-bind="friend.Login"></span>
-            <span class="post-count float-right">Постов: {{friend.CountPosts}} шт.</span>
-        </h3>
-    </div>
-    <div class="panel-body">
-        <a href="/friends/{{friend.Login}}">Посмотреть ленту друга</a>
-    </div>
-</div> -->

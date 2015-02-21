@@ -63,7 +63,6 @@
 
   });
 
-
   $app->delete('/post/:postId', function ($postId) use ($app, $dbname) {
 
     $posts = $dbname->posts;
@@ -108,34 +107,47 @@
 
   });
 
+  $app->put('/deletefriend/:friendId', function ($friendId) use ($app, $dbname) {
+
+    $friends = $dbname->friends;
+    $req     = json_decode($app->request->getBody());
+    $userId  = $req->userId;
+    $ids     = $friends->findOne(['UserId' => $userId])['Friends'];
+
+    for($i = 0; $i < count($ids); $i++) {
+      if ($ids[$i] == $friendId) {
+        $index = $i;
+        break;
+      }
+    }
+
+    array_splice($ids, $index, 1);
+    $newData = ['$set' => ['Friends' => $ids]];
+    $friends->update(['UserId' => $userId], $newData);
+
+  });
+
   $app->post('/allusers', function () use ($app, $api, $dbname) {
 
       $friends = $dbname->friends;
       $users   = [];
       $userId  = json_decode($app->request->getBody())->userId;
-      $ids     = $friends->findOne(['UserId' => $userId]);
+      $ids     = $friends->findOne(['UserId' => $userId])['Friends'];
 
       foreach($api->user->search()->items as $items) {
           $users[] = $api->user->get([
               "user_id" => $items->user_id
           ])[0];
       }
-
+    
       if (!empty($ids)) {
-        $temp  = [];
-        $count = 0;
-        for ($i = 0; $i< count($users); $i++) {
-          for ($j = 0; $j < count($ids['Friends']); $j++) {
-            if ($users[$i]->user_id != $ids['Friends'][$j] && $users[$i]->user_id != $userId) {
-              ++$count;
+        foreach($users as $user) {
+          foreach($ids as $id) {
+            if ($user->user_id == $id) {
+              $user->properties->isFriend->value = true;
             }
           }
-          if ($count == count($ids['Friends'])) {
-            $temp[] = $users[$i];
-          }
-          $count = 0;
         }
-        return $app->response->setBody(json_encode($temp));
       }
 
       $app->response->setBody(json_encode($users));
