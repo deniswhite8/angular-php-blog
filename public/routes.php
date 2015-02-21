@@ -108,22 +108,6 @@
 
   });
 
-  $app->get('/login', function () use ($app) {
-      readfile('index.html');
-  });
-
-  $app->get('/signup', function () use ($app) {
-      readfile('index.html');
-  });
-
-  $app->get('/friends', function () use ($app) {
-      readfile('index.html');
-  });
-
-  $app->get('/addpost', function () use ($app) {
-      readfile('index.html');
-  });
-
   $app->post('/allusers', function () use ($app, $api, $dbname) {
 
       $friends = $dbname->friends;
