@@ -2,10 +2,12 @@ var gulp          = require('gulp'),
     sass          = require('gulp-sass'),
     autoprefixer  = require('gulp-autoprefixer'),
     livereload    = require('gulp-livereload'),
-    sourcemaps    = require('gulp-sourcemaps');
+    sourcemaps    = require('gulp-sourcemaps'),
+    plumber       = require('gulp-plumber');
 
 gulp.task('sass', function () {
   gulp.src('public/scss/main.scss')
+  .pipe(plumber())
   .pipe(sourcemaps.init())
   .pipe(sass())
   .pipe(autoprefixer({

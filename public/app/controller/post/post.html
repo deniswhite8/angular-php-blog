@@ -1,9 +1,14 @@
-<div class="panel-heading">
-    <h1 class="panel-title">{{post.post.Title}}</h1>
-</div>
-<div class="panel-body">
-    <div class="post-text">{{post.post.Text}}</div>
-</div>
-<div class="panel-footer clearfix">
-    <div class="post-time-ago float-left">{{post.post.DateCreation | date : 'd MMMM y H:mm:ss'}} от <a href="#/user/{{post.post.UserId}}" class="navbar-link">{{post.post.UserName}}</a></div>
+<div class="post">
+  <div class="post-date">
+    <span class="post-date__inner">{{post.post.DateCreation | date : 'd MMM'}}</span>
+  </div>
+  <ul class="post-info">
+    <li class="post-info__item">posted by
+      <a href="#/user/{{post.UserId}}" class="post-info__item-link">{{post.post.UserName}}</a>
+    </li>
+  </ul>
+  <div class="post-container">
+    <h2 class="post-header">{{post.post.Title}}</h2>
+    <p class="post-body">{{post.post.Text}}</p>
+  </div>
 </div>

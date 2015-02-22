@@ -1,20 +1,30 @@
-<div class="row">
+<section class="posts">
   <input type="text" class="form-control" ng-model="search">
-</div>
-<div class="panel panel-info" data-ng-repeat="post in home.posts | filter : search">
-  <div class="panel-heading">
-    <a href="#/post/{{post._id.$id}}" class="panel-title">{{post.Title}}</a>
-  </div>
-  <div class="panel-body">
-    <div class="post-text">{{post.Text | limitTo:200}}</div>
-  </div>
-  <div class="panel-footer clearfix">
-    <div class="post-time-ago float-left">{{post.DateCreation | date : 'd MMMM y H:mm:ss'}} от <a href="#/user/{{post.UserId}}" class="navbar-link">{{post.UserName}}</a>
+  <div class="post" data-ng-repeat="post in home.posts | filter : search">
+    <div class="post-date">
+      <span class="post-date__inner">{{post.DateCreation | date : 'd MMM'}}</span>
     </div>
-    <div data-ng-if="post.UserId == user.user_id" class="post-administration float-right">
-      <a href="#/editpost/{{post._id.$id}}" class="navbar-link">Редактировать</a> / <a data-ng-click="home.deletePost(post._id.$id, $index)" href="javascript:void(0)" class="navbar-link">Удалить</a>
+    <ul class="post-info">
+      <li class="post-info__item">posted by
+        <a href="#/user/{{post.UserId}}" class="post-info__item-link">{{post.UserName}}</a>
+      </li>
+    </ul>
+    <div class="post-container">
+      <h2 class="post-header">{{post.Title}}</h2>
+      <p class="post-body">{{post.Text | limitTo:200}}</p>
+      <ul class="post-actions">
+        <li class="post-actions__item">
+          <a href="#/post/{{post._id.$id}}" class="post-actions__link">Read More</a>
+        </li>
+        <li data-ng-if="post.UserId == user.user_id" class="post-actions__item">
+          <a href="#/editpost/{{post._id.$id}}" class="post-actions__link">Edit</a>
+        </li>
+        <li data-ng-if="post.UserId == user.user_id" class="post-actions__item">
+          <a data-ng-click="home.deletePost(post._id.$id, $index)" href="javascript:void(0)" class="post-actions__link">Delete</a>
+        </li>
+      </ul>
     </div>
   </div>
-</div>
+</section>
 
-<h1 data-ng-if="home.isPostsEmpty">Нет добавленных новостей</h1>
+<h1 data-ng-if="home.isPostsEmpty">Oops! You have no posts:(</h1>

@@ -11,7 +11,6 @@
 
     <!-- build:css(client) styles/global.css -->
       <!-- bower:css -->
-      <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css" />
       <link rel="stylesheet" href="/bower_components/angular-loading-bar/build/loading-bar.css" />
       <!-- endbower -->
     <!-- endbuild -->
@@ -23,42 +22,37 @@
 
   </head>
   <body>
-    <header>
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#/">Billboard</a>
-                </div>
-                
-              <div class="navbar-form navbar-right">
-                <p ng-if="user.authenticated" class="navbar-text">
-                  Welcome, <a class="navbar-link" ng-bind="user.first_name" href="#/user/{{user.user_id}}"></a>
-                </p>
-                <p ng-if="user.authenticated" class="navbar-text">
-                  <a href="#/friends" class="navbar-link">Добавить друзей</a>
-                </p>
-                <p ng-if="user.authenticated" class="navbar-text">
-                  <a href="#/addpost" class="navbar-link">Добавить пост</a>
-                </p>
-                <p ng-if="user.authenticated" class="navbar-text">
-                  <a ua-logout href="#" class="navbar-link">Выйти</a>
-                </p>
-              </div>
-
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
+    <section class="hero"></section>
+    <section class="page">
+      <div class="container">
+        <nav class="nav">
+          <ul ng-if="user.authenticated" class="nav-left">
+            <li class="nav__item">
+              <a href="#/" class="nav__item-link">Posts</a>
+            </li>
+            <li class="nav__item">
+              <a href="#/addpost" class="nav__item-link">Add post</a>
+            </li>
+          </ul>
+          <ul ng-if="user.authenticated" class="nav-right">
+            <li class="nav__item has-dropdown">
+              <a href="#/friends" class="nav__item-link">Add friends</a>
+            </li>
+            <li class="nav__item">
+              <a ua-logout href="#" class="nav__item-link">Log out</a>
+            </li>
+          </ul>
+          <a href="#/" class="logo">
+            <img class="logo__img" src="img/logo.jpg" alt="">
+          </a>
         </nav>
-    </header>
-
-    <div id="app-wrapper" ng-view></div>
+        <h2 ng-if="user.authenticated" class="greeting">Hello, <a ng-bind="user.first_name" href="#/user/{{user.user_id}}"></a></h2>
+        <ng-view></ng-view>
+      </div>
+      <footer class="footer">
+        <p class="copyright">Copyrights (c) <a href="#/" class="copyright-link">Billboard</a> 2015</p>
+      </footer>
+    </section>
 
     <!-- build:js(client) app/global.js -->
       <!-- bower:js -->
