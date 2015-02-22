@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('billboard')
-  .controller('EditPostCtrl', function($location, $routeParams, $http, api) {
+  .controller('EditPostCtrl', function($location, $stateParams, $http, api) {
 
     this.post = {};
 
-    api.getPost($routeParams.postId).success(function(data){
+    api.getPost($stateParams.postId).success(function(data){
         this.post = data;
     }.bind(this));
 

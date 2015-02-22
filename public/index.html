@@ -28,29 +28,29 @@
         <nav class="nav">
           <ul ng-if="user.authenticated" class="nav-left">
             <li class="nav__item">
-              <a href="#/" class="nav__item-link">Posts</a>
+              <a ui-sref="home" ui-sref-active="nav__item-link_active" class="nav__item-link">Posts</a>
             </li>
             <li class="nav__item">
-              <a href="#/addpost" class="nav__item-link">Add post</a>
+              <a ui-sref="addpost" ui-sref-active="nav__item-link_active" class="nav__item-link">Add post</a>
             </li>
           </ul>
           <ul ng-if="user.authenticated" class="nav-right">
-            <li class="nav__item has-dropdown">
-              <a href="#/friends" class="nav__item-link">Add friends</a>
+            <li class="nav__item">
+              <a ui-sref="friends" ui-sref-active="nav__item-link_active" class="nav__item-link">Add friends</a>
             </li>
             <li class="nav__item">
               <a ua-logout href="#" class="nav__item-link">Log out</a>
             </li>
           </ul>
-          <a href="#/" class="logo">
+          <a ui-sref="home" class="logo">
             <img class="logo__img" src="img/logo.jpg" alt="">
           </a>
         </nav>
-        <h2 ng-if="user.authenticated" class="greeting">Hello, <a ng-bind="user.first_name" href="#/user/{{user.user_id}}"></a></h2>
-        <ng-view></ng-view>
+        <h2 ng-if="user.authenticated" class="greeting">Hello, <a ng-bind="user.first_name" ui-sref="user({userId: user.user_id})"></a></h2>
+        <ui-view></ui-view>
       </div>
       <footer class="footer">
-        <p class="copyright">Copyrights (c) <a href="#/" class="copyright-link">Billboard</a> 2015</p>
+        <p class="copyright">Copyrights (c) <a ui-sref="home" class="copyright-link">Billboard</a> 2015</p>
       </footer>
     </section>
 
@@ -58,7 +58,7 @@
       <!-- bower:js -->
       <script src="/bower_components/jquery/dist/jquery.js"></script>
       <script src="/bower_components/angular/angular.js"></script>
-      <script src="/bower_components/angular-route/angular-route.js"></script>
+      <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
       <script src="/bower_components/angular-loading-bar/build/loading-bar.js"></script>
       <script src="/bower_components/userapp/userapp.client.js"></script>
       <script src="/bower_components/userapp-angular/angularjs.userapp.js"></script>

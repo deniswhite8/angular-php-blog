@@ -82,7 +82,7 @@
             color:  $nav-link-color;
             letter-spacing: 2px;
             padding-bottom: 8px;
-            font-size: 1.5em; 
+            font-size: 1.5em;
             font-weight: 700;
             line-height: 1.25;
             transition: all $td;
@@ -279,7 +279,7 @@
             display: block;
             color:  #c0c0c0;
             font-size: 0.88em;
-            line-height: 1.714; 
+            line-height: 1.714;
             position: relative;
             padding: 0 0 0 13px;
             @include min-screen($small){
@@ -388,7 +388,7 @@
     text-align: center;
     color:  #aeaeae;
     font-size: 1.13em;
-    line-height: 1.667; 
+    line-height: 1.667;
     letter-spacing: 1px;
     &-link{
         color:  $link-color;

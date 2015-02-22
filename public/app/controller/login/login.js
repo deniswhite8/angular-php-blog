@@ -1,10 +1,13 @@
 'use strict';
 
 angular.module('billboard')
-  .config(function($routeProvider) {
-    $routeProvider
-      .when('/login', {
+  .config(function($stateProvider) {
+    $stateProvider
+      .state('login', {
+        url: '/login',
         templateUrl: 'app/controller/login/login.html',
-        login: true
+        data: {
+          login: true
+        }
       })
   });

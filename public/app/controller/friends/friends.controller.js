@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('billboard')
-  .controller('FriendsCtrl', function ($route, $http, user, api) {
+  .controller('FriendsCtrl', function ($state, $http, user, api) {
 
     this.users = [];
     this.areFriendsEmpty = false;
@@ -20,7 +20,7 @@ angular.module('billboard')
         friendId: friendId,
         userId: user.current.user_id
       }).success(function () {
-        $route.reload();
+        $state.reload();
       });
     };
 
@@ -29,7 +29,7 @@ angular.module('billboard')
         friendId: friendId,
         userId: user.current.user_id
       }).success(function () {
-        $route.reload();
+        $state.reload();
       });
     };
   });

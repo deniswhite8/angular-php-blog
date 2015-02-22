@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('billboard')
-  .config(function($routeProvider) {
-    $routeProvider
-      .when('/friends', {
+  .config(function($stateProvider) {
+    $stateProvider
+      .state('friends', {
+        url: '/friends',
         templateUrl: 'app/controller/friends/friends.html',
-        controller: 'FriendsCtrl',
-        controllerAs: 'friends'
+        controller: 'FriendsCtrl as friends',
+        resolve: {}
       });
   });

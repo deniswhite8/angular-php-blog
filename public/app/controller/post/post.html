@@ -4,7 +4,7 @@
   </div>
   <ul class="post-info">
     <li class="post-info__item">posted by
-      <a href="#/user/{{post.UserId}}" class="post-info__item-link">{{post.post.UserName}}</a>
+      <a ui-sref="user({userId: post.post.UserId})" class="post-info__item-link">{{post.post.UserName}}</a>
     </li>
   </ul>
   <div class="post-container">

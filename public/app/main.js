@@ -1,15 +1,13 @@
 'use strict';
 
 angular.module('billboard', [
-  'ngRoute',
+  'ui.router',
   'UserApp',
   'angular-loading-bar'
 ])
 
-.config(function ($routeProvider) {
-  $routeProvider.otherwise({
-    redirectTo: '/'
-  });
+.config(function ($urlRouterProvider) {
+  $urlRouterProvider.otherwise('/')
 })
 
 .run(function (user) {

@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('billboard')
-  .config(function($routeProvider) {
-    $routeProvider
-      .when('/', {
+  .config(function($stateProvider) {
+    $stateProvider
+      .state('home', {
+        url: '/',
         templateUrl: 'app/controller/home/home.html',
-        controller: 'HomeCtrl',
-        controllerAs: 'home'
+        controller: 'HomeCtrl as home',
+        resolve: {}
       });
   });

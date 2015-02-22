@@ -6,7 +6,7 @@
     </div>
     <ul class="post-info">
       <li class="post-info__item">posted by
-        <a href="#/user/{{post.UserId}}" class="post-info__item-link">{{post.UserName}}</a>
+        <a ui-sref="user({userId: post.UserId})" class="post-info__item-link">{{post.UserName}}</a>
       </li>
     </ul>
     <div class="post-container">
@@ -14,10 +14,10 @@
       <p class="post-body">{{post.Text | limitTo:200}}</p>
       <ul class="post-actions">
         <li class="post-actions__item">
-          <a href="#/post/{{post._id.$id}}" class="post-actions__link">Read More</a>
+          <a ui-sref="post({postId: post._id.$id})" class="post-actions__link">Read More</a>
         </li>
         <li data-ng-if="post.UserId == user.user_id" class="post-actions__item">
-          <a href="#/editpost/{{post._id.$id}}" class="post-actions__link">Edit</a>
+          <a ui-sref="editpost({postId: post._id.$id})" class="post-actions__link">Edit</a>
         </li>
         <li data-ng-if="post.UserId == user.user_id" class="post-actions__item">
           <a data-ng-click="home.deletePost(post._id.$id, $index)" href="javascript:void(0)" class="post-actions__link">Delete</a>

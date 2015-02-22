@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('billboard')
-  .controller('UserCtrl', function($routeParams, api) {
+  .controller('UserCtrl', function($stateParams, api) {
 
     this.user = {};
 
-    api.getUser($routeParams.userId).success(function(data){
+    api.getUser($stateParams.userId).success(function(data){
       this.user = data;
     }.bind(this));
 

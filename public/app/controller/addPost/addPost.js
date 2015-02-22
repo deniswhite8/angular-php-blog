@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('billboard')
-  .config(function($routeProvider) {
-    $routeProvider
-      .when('/addpost', {
+  .config(function($stateProvider) {
+    $stateProvider
+      .state('addpost', {
+        url: '/addpost',
         templateUrl: 'app/controller/addPost/addPost.html',
-        controller: 'AddPostCtrl',
-        controllerAs: 'addpost'
+        controller: 'AddPostCtrl as addpost'
       });
   });

@@ -1,8 +1,8 @@
 <div class="all-users">
   <ul>
     <li data-ng-repeat="friend in friends.users" ng-if="user.user_id !== friend.user_id">
-      
-      <a href="#/user/{{friend.user_id}}">{{friend.first_name}}</a>
+
+      <a ui-sref="user({userId: friend.user_id})">{{friend.first_name}}</a>
       <span ng-if="friend.properties.isFriend.value == true"> добавлен в друзья</span>
       <button ng-if="friend.properties.isFriend.value == true" data-ng-click="friends.deleteFriend(friend.user_id)" class="btn btn-danger">Удалить</button>
       <button ng-if="friend.properties.isFriend.value != true" data-ng-click="friends.addFriend(friend.user_id)" class="btn btn-primary">Добавить в друзья</button>
