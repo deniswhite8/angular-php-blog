@@ -1,17 +1,20 @@
-<div class="panel panel-info" data-ng-repeat="post in home.posts">
-    <div class="panel-heading">
-        <a href="#/post/{{post._id.$id}}" class="panel-title">{{post.Title}}</a>
+<div class="row">
+  <input type="text" class="form-control" ng-model="search">
+</div>
+<div class="panel panel-info" data-ng-repeat="post in home.posts | filter : search">
+  <div class="panel-heading">
+    <a href="#/post/{{post._id.$id}}" class="panel-title">{{post.Title}}</a>
+  </div>
+  <div class="panel-body">
+    <div class="post-text">{{post.Text | limitTo:200}}</div>
+  </div>
+  <div class="panel-footer clearfix">
+    <div class="post-time-ago float-left">{{post.DateCreation | date : 'd MMMM y H:mm:ss'}} от <a href="#/user/{{post.UserId}}" class="navbar-link">{{post.UserName}}</a>
     </div>
-    <div class="panel-body">
-        <div class="post-text">{{post.Text | limitTo:200}}</div>
+    <div data-ng-if="post.UserId == user.user_id" class="post-administration float-right">
+      <a href="#/editpost/{{post._id.$id}}" class="navbar-link">Редактировать</a> / <a data-ng-click="home.deletePost(post._id.$id, $index)" href="javascript:void(0)" class="navbar-link">Удалить</a>
     </div>
-    <div class="panel-footer clearfix">
-        <div class="post-time-ago float-left">{{post.DateCreation | date : 'd MMMM y H:mm:ss'}} от <a href="#/user/{{post.UserId}}" class="navbar-link">{{post.UserName}}</a></div>
-        <div data-ng-if="post.UserId == user.user_id" class="post-administration float-right">
-            <a href="#/editpost/{{post._id.$id}}" class="navbar-link">Редактировать</a> / <a data-ng-click="home.deletePost(post._id.$id, $index)" href="javascript:void(0)" class="navbar-link">Удалить</a>
-        </div>
-    </div>
+  </div>
 </div>
 
 <h1 data-ng-if="home.isPostsEmpty">Нет добавленных новостей</h1>
-
