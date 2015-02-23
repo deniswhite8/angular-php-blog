@@ -24,10 +24,16 @@ img{
     max-width: 100%;
 }
 
-input {
+input,
+textarea {
     border: 0;
     font-family: $base-font-family;
-    &:focus {
-        outline: 0;
-    }
+}
+
+input,
+textarea,
+button{
+  &:focus {
+      outline: 0;
+  }
 }

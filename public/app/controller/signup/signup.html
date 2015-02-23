@@ -1,30 +1,30 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="well login-box">
-                <form ua-signup ng-show="!verificationEmailSent">
-                    <legend>Sign Up</legend>
-                    <div class="form-group">
-                        <label for="firstName">Username</label>
-                        <input id="firstName" name="first_name" placeholder="First name" type="text" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="login">Email</label>
-                        <input id="login" ua-is-email name="login" placeholder="Email" type="text" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input id="password" name="password" placeholder="Password" type="password" class="form-control" />
-                    </div>
-                    <div class="form-group text-center">
-                        <p ng-show="loading"><img src="https://app.userapp.io/img/ajax-loader-transparent.gif"></p>
-                        <p ng-show="error">{{ error.message }}</p>
-                        <input type="submit" class="btn btn-success btn-login-submit" value="Sign Up" />
-                    </div>
-                </form>
-                <p ng-show="verificationEmailSent">An email has been sent to your inbox. Click on the link to verify your account.</p>
-                <p><a ui-sref="login">Log in</a></p>
-            </div>
-        </div>
+<form ua-signup class="form form_login">
+    <div class="form__title form__title_center">
+        Sign up
     </div>
-</div>
+    <div class="form__row">
+      <img class="form__img"
+          src="img/profile.png" alt="">
+    </div>
+    <div class="form__row">
+        <input name="first_name" placeholder="First name" type="text" class="form__input" />
+    </div>
+    <div class="form__row">
+        <input ua-is-email name="login" placeholder="Email" type="text" class="form__input" />
+    </div>
+    <div class="form__row">
+        <input name="password" placeholder="Password" type="password" class="form__input" />
+    </div>
+    <div class="form__row">
+        <input type="submit" class="btn btn_block" value="Sign Up">
+    </div>
+    <div class="form__footer">
+      <p class="form__error" ng-show="error">{{ error.message }}</p>
+      <div class="form__info">
+        Don't have an account! <a class="form__link" ui-sref="login">Log in</a>
+      </div>
+    </div>
+    <div ng-show="loading" class="loading-bar">
+      <img  class="loading-bar__img" src="img/ajax-loader.gif">
+    </div>
+</form>

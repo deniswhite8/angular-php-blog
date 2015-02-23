@@ -46,7 +46,9 @@
             <img class="logo__img" src="img/logo.jpg" alt="">
           </a>
         </nav>
-        <h2 ng-if="user.authenticated" class="greeting">Hello, <a ng-bind="user.first_name" ui-sref="user({userId: user.user_id})"></a></h2>
+        <h2 ng-if="user.authenticated" class="greeting">
+          Hello, <a class="greeting__link" ng-bind="user.first_name" ui-sref="user({userId: user.user_id})"></a>
+        </h2>
         <ui-view></ui-view>
       </div>
       <footer class="footer">
