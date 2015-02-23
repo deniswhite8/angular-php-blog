@@ -1,12 +1,23 @@
-<div class="all-users">
-  <ul>
-    <li data-ng-repeat="friend in friends.users" ng-if="user.user_id !== friend.user_id">
+<ul class="friends-list">
+  <li class="friends-list__item" data-ng-repeat="friend in friends.users" ng-if="user.user_id !== friend.user_id">
+    <div class="friends-list__name">
+      <a class="friends-list__link" ui-sref="user({userId: friend.user_id})">{{friend.first_name}}</a>
+    </div>
+    <div class="friends-list__actions">
+      <button
+        ng-if="friend.properties.isFriend.value == true"
+        data-ng-click="friends.deleteFriend(friend.user_id)"
+        class="btn btn_danger">
+        Delete
+      </button>
+      <button
+        ng-if="friend.properties.isFriend.value != true"
+        data-ng-click="friends.addFriend(friend.user_id)"
+        class="btn">
+        Add
+      </button>
+    </div>
+  </li>
+</ul>
 
-      <a ui-sref="user({userId: friend.user_id})">{{friend.first_name}}</a>
-      <span ng-if="friend.properties.isFriend.value == true"> добавлен в друзья</span>
-      <button ng-if="friend.properties.isFriend.value == true" data-ng-click="friends.deleteFriend(friend.user_id)" class="btn btn-danger">Удалить</button>
-      <button ng-if="friend.properties.isFriend.value != true" data-ng-click="friends.addFriend(friend.user_id)" class="btn btn-primary">Добавить в друзья</button>
-    </li>
-  </ul>
-  <p ng-if="friends.areFriendsEmpty">Все пользователи у вас в друзьях</p>
-</div>
+<h1 class="post-empty" ng-if="friends.areFriendsEmpty">Oops, there are no users any more:(</h1>

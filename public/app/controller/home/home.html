@@ -1,5 +1,5 @@
-<section class="posts">
-  <input type="text" class="form-control" ng-model="search">
+<section data-ng-if="!home.isPostsEmpty" class="posts">
+  <input type="text" class="form__input form__input_search" placeholder="Search in {{home.posts.length}} posts..." ng-model="search">
   <div class="post" data-ng-repeat="post in home.posts | filter : search">
     <div class="post-date">
       <span class="post-date__inner">{{post.DateCreation | date : 'd MMM'}}</span>
@@ -27,4 +27,4 @@
   </div>
 </section>
 
-<h1 data-ng-if="home.isPostsEmpty">Oops! You have no posts:(</h1>
+<h1 class="post-empty" data-ng-if="home.isPostsEmpty">Oops! You have no posts:(</h1>

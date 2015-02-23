@@ -5,7 +5,7 @@ angular.module('billboard')
 
   	this.posts = [];
     this.isPostsEmpty = false;
-    console.log(user.current.email);
+
     api.getPosts(user.current.user_id).success(function(data){
       if (data.length) {
         this.posts = data;

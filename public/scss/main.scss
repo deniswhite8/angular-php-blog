@@ -345,6 +345,10 @@
         line-height: 1.5;
         margin-bottom: 14px;
     }
+  &-empty{
+    text-align: center;
+    font-size: 2.5em;
+  }
   &-actions{
     &__item{
       display: inline-block;
@@ -375,7 +379,6 @@
 .btn{
     display: inline-block;
     background:  $link-color;
-    border-radius: 5px;
     color:  $white;
     font-size: 1.13em;
     font-weight: 700;
@@ -393,13 +396,21 @@
       display: block;
       width: 100%;
     }
+    &_danger{
+      background: lighten(#f00, 15%);
+      &:hover{
+        background: darken(#f00, 15%);
+      }
+    }
 }
 
 .form{
   position: relative;
   &_login{
-    margin: 140px auto 0;
-    max-width: 500px;
+    @include min-screen($large) {
+      margin: 140px auto 0;
+      max-width: 500px;
+    }
   }
   &__img{
     border-radius: 50%;
@@ -428,11 +439,22 @@
     background: #ebebeb;
     font-size: em(16);
     padding: 15px 10px;
-    border-radius: 5px;
     transition: all $td;
     &:hover,
     &:focus{
       background: darken(#ebebeb, 10%);
+    }
+  }
+  &__input{
+    &_search{
+      background: #fff;
+      border: 1px solid #ebebeb;
+      margin: 30px 0;
+      &:hover,
+      &:focus{
+        background: #fff;
+        border-color: darken(#ebebeb, 25%);
+      }
     }
   }
   &__textarea{
@@ -459,7 +481,6 @@
     font-size: em(18);
     text-align: center;
     padding: 14px 0;
-    border-radius: 5px;
   }
 }
 
@@ -496,5 +517,112 @@
             color: darken($link-color, 10%);
         }
     }
+}
+
+.user-card{
+  @extend %clearfix;
+  border: 1px solid #ebebeb;
+  padding: 20px;
+  @include min-screen($middle) {
+    margin: 0 15%;
+  }
+  &-aside,
+  &-content{
+    @include min-screen($large) {
+      float: left;
+    }
+  }
+  &-aside{
+    text-align: center;
+    @include min-screen($large) {
+      width: 30%;
+    }
+  }
+  &-content{
+    @include min-screen($large) {
+      width: 70%;
+    }
+  }
+  &__img{
+    border-radius: 50%;
+    border: 10px solid #eee;
+    @include min-screen($large) {
+      margin: 40px 0;
+    }
+  }
+  &__name{
+    text-align: center;
+    font-size: em(24);
+    margin: 10px 0;
+    letter-spacing: 2px;
+    @include min-screen($middle) {
+      text-align: left;
+    }
+  }
+  &-info{
+    &__item{
+      display: table;
+      width: 100%;
+      padding: 15px 0;
+      color: #a0a0a0;
+      font-size: em(18);
+      &+&{
+        border-top: 1px solid #a0a0a0;
+      }
+    }
+    &__label,
+    &__value{
+      display: table-cell;
+      vertical-align: middle;
+    }
+    &__label{
+      display: none;
+      @include min-screen($middle) {
+        display: table-cell;
+        width: 40%;
+      }
+    }
+    &__value{
+      text-align: center;
+      @include min-screen($middle) {
+        width: 60%;
+      }
+    }
+  }
+}
+
+.friends-list{
+  border: 1px solid #ebebeb;
+  padding: 20px 40px;
+  @include min-screen($middle) {
+    margin: 0 15%;
+  }
+  &__item{
+    display: table;
+    width: 100%;
+    margin: 20px 0;
+  }
+  &__name,
+  &__actions{
+    display: table-cell;
+    vertical-align: middle;
+  }
+  &__name{
+    width: 40%;
+  }
+  &__link{
+    font-size: em(24);
+    font-weight: 700;
+    color: #000;
+    letter-spacing: 2px;
+    transition: all $td;
+    &:hover{
+      color: lighten(#000, 50%);
+    }
+  }
+  &__actions{
+    width: 60%;
+    text-align: center;
+  }
 }
 
