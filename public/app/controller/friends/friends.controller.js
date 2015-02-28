@@ -11,25 +11,25 @@ angular.module('billboard')
         this.users = data;
         this.areFriendsEmpty = false;
       } else {
-        this.areFriendsEmpty = true;;
+        this.areFriendsEmpty = true;
       }
     }.bind(this));
 
-    this.addFriend = function (friendId) {
+    this.addFriend = function (friendId, index) {
       api.addFriend({
         friendId: friendId,
         userId: user.current.user_id
       }).success(function () {
-        $state.reload();
-      });
+        this.users[index].properties.isFriend.value = true;
+      }.bind(this));
     };
 
-    this.deleteFriend = function (friendId) {
+    this.deleteFriend = function (friendId, index) {
       api.deleteFriend({
         friendId: friendId,
         userId: user.current.user_id
       }).success(function () {
-        $state.reload();
-      });
+        this.users[index].properties.isFriend.value = false;
+      }.bind(this));
     };
   });

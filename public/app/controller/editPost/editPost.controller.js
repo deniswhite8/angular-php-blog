@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('billboard')
-  .controller('EditPostCtrl', function($location, $stateParams, $http, api) {
+  .controller('EditPostCtrl', function($location, $stateParams, $state, api) {
 
     this.post = {};
 
@@ -14,7 +14,7 @@ angular.module('billboard')
         postId: postId,
         post:   this.post
       }).success(function(data){
-        $location.path('/');
+        $state.go('home');
       });
     };
 

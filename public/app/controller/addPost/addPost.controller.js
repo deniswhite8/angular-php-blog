@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('billboard')
-  .controller('AddPostCtrl', function($location, $http, user, api) {
+  .controller('AddPostCtrl', function($location, $state, user, api) {
   	this.addPost = function(){
       api.addPost({
         title:      this.title,
@@ -9,7 +9,7 @@ angular.module('billboard')
         userId:     user.current.user_id,
         userName:   user.current.first_name
       }).success(function(){
-        $location.path('/');
+        $state.go('home');
       });
   	};
   });

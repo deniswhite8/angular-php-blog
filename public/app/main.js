@@ -7,7 +7,7 @@ angular.module('billboard', [
 ])
 
 .config(function ($urlRouterProvider) {
-  $urlRouterProvider.otherwise('/')
+  $urlRouterProvider.otherwise('/');
 })
 
 .run(function (user) {

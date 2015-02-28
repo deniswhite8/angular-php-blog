@@ -3,7 +3,8 @@ var gulp          = require('gulp'),
     autoprefixer  = require('gulp-autoprefixer'),
     livereload    = require('gulp-livereload'),
     sourcemaps    = require('gulp-sourcemaps'),
-    plumber       = require('gulp-plumber');
+    plumber       = require('gulp-plumber'),
+    jshint        = require('gulp-jshint');
 
 gulp.task('sass', function () {
   gulp.src('public/scss/main.scss')
@@ -19,7 +20,15 @@ gulp.task('sass', function () {
   .pipe(livereload());
 });
 
-gulp.task('default', ['sass'], function(){
+gulp.task('scripts', function () {
+  return gulp.src('public/app/**/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(livereload());
+});
+
+gulp.task('default', ['sass', 'scripts'], function(){
   livereload.listen();
   gulp.watch('public/**/*.scss', ['sass']);
+  gulp.watch('public/app/**/*.js', ['scripts']);
 });

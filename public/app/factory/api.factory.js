@@ -4,11 +4,11 @@ angular.module('billboard')
   .factory('api', function ($http) {
     return {
       addPost: function (obj) {
-        return $http.post('/addpost', {
-          title: obj.title,
-          text: obj.text,
-          userId: obj.userId,
-          userName: obj.userName,
+        return $http.post('/post', {
+          title:        obj.title,
+          text:         obj.text,
+          userId:       obj.userId,
+          userName:     obj.userName,
           dateCreation: new Date()
         });
       },
@@ -29,22 +29,22 @@ angular.module('billboard')
         });
       },
       getAllUsers: function (userId) {
-        return $http.post('/allusers', {
+        return $http.post('/users', {
           userId: userId
         });
       },
       addFriend: function (obj) {
-        return $http.post('/addfriend/' + obj.friendId, {
+        return $http.post('/friend/' + obj.friendId, {
           userId: obj.userId
         });
       },
       deleteFriend: function (obj) {
-        return $http.put('/deletefriend/' + obj.friendId, {
+        return $http.put('/friend/' + obj.friendId, {
           userId: obj.userId
         });
       },
       getUser: function (userId) {
         return $http.get('/user/' + userId);
       }
-    }
-  })
+    };
+  });

@@ -37,7 +37,7 @@
 
   });
 
-  $app->post('/addpost', function () use ($app, $dbname) {
+  $app->post('/post', function () use ($app, $dbname) {
 
     $posts = $dbname->posts;
       $req   = json_decode($app->request->getBody());
@@ -88,7 +88,7 @@
 
   });
 
-  $app->post('/addfriend/:friendId', function ($friendId) use ($app, $dbname) {
+  $app->post('/friend/:friendId', function ($friendId) use ($app, $dbname) {
 
       $friends = $dbname->friends;
       $req     = json_decode($app->request->getBody());
@@ -107,7 +107,7 @@
 
   });
 
-  $app->put('/deletefriend/:friendId', function ($friendId) use ($app, $dbname) {
+  $app->put('/friend/:friendId', function ($friendId) use ($app, $dbname) {
 
     $friends = $dbname->friends;
     $req     = json_decode($app->request->getBody());
@@ -127,7 +127,7 @@
 
   });
 
-  $app->post('/allusers', function () use ($app, $api, $dbname) {
+  $app->post('/users', function () use ($app, $api, $dbname) {
 
       $friends = $dbname->friends;
       $users   = [];
@@ -139,7 +139,7 @@
               "user_id" => $items->user_id
           ])[0];
       }
-    
+
       if (!empty($ids)) {
         foreach($users as $user) {
           foreach($ids as $id) {

@@ -7,5 +7,5 @@ angular.module('billboard')
         url: '/user/:userId',
         templateUrl: 'app/controller/user/user.html',
         controller: 'UserCtrl as user'
-      })
+      });
   });

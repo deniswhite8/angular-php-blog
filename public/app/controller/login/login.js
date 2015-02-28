@@ -9,5 +9,5 @@ angular.module('billboard')
         data: {
           login: true
         }
-      })
+      });
   });

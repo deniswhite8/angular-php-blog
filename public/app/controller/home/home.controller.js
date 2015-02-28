@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('billboard')
-  .controller('HomeCtrl', function($http, user, api) {
+  .controller('HomeCtrl', function(user, api) {
 
   	this.posts = [];
     this.isPostsEmpty = false;
@@ -24,5 +24,5 @@ angular.module('billboard')
         }
   		}.bind(this));
   	};
-  })
+  });
 

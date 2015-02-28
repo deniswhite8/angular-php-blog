@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('billboard')
-  .controller('PostCtrl', function($stateParams, $http, user, api) {
+  .controller('PostCtrl', function($stateParams, user, api) {
 
     this.post = {};
 
