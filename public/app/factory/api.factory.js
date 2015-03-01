@@ -9,7 +9,7 @@ angular.module('billboard')
           text:         obj.text,
           userId:       obj.userId,
           userName:     obj.userName,
-          dateCreation: new Date()
+          dateCreation: Date.now()
         });
       },
       getPost: function (postId) {

@@ -4,15 +4,15 @@ angular.module('billboard')
   .controller('HomeCtrl', function(user, api) {
 
   	this.posts = [];
-    this.isPostsEmpty = false;
+    this.arePostsEmpty = false;
 
     api.getPosts(user.current.user_id).success(function(data){
       if (data.length) {
         this.posts = data;
-        this.isPostsEmpty = false;
+        this.arePostsEmpty = false;
       }
       else {
-        this.isPostsEmpty = true;
+        this.arePostsEmpty = true;
       }
   	}.bind(this));
 
@@ -20,7 +20,7 @@ angular.module('billboard')
   		api.deletePost(postId).success(function(){
         this.posts.splice(index, 1);
         if (!this.posts.length) {
-          this.isPostsEmpty = true;
+          this.arePostsEmpty = true;
         }
   		}.bind(this));
   	};

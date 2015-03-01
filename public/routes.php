@@ -33,6 +33,13 @@
           }
       }
 
+      usort($userPosts, function($a, $b){
+        if ($a['DateCreation'] == $b['DateCreation']) {
+            return 0;
+        }
+        return ($a['DateCreation'] > $b['DateCreation']) ? -1 : 1;
+      });
+
       $app->response->setBody(json_encode($userPosts));
 
   });
