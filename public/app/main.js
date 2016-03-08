@@ -12,6 +12,6 @@ angular.module('billboard', [
 
 .run(function (user) {
   user.init({
-    appId: '54e0a91dd2235'
+    appId: '56deee72a3275'
   });
 });

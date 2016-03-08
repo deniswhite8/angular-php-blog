@@ -3,7 +3,7 @@
   require '../vendor/autoload.php';
   require 'db.php';
 
-  $api = new \UserApp\API('54e0a91dd2235', 'g4EkA_oqSrCw38SZXObpuw');
+  $api = new \UserApp\API('56deee72a3275', 'zJY2VAKIQgCi_IiuxxNMQA');
 
   $app = new \Slim\Slim([
       'debug' => true
@@ -162,7 +162,6 @@
   });
 
   $app->get('/user/:userId', function($userId) use ($app, $api, $dbname){
-
     $posts      = $dbname->posts;
     $friends    = $dbname->friends;
     $friendsIds = $friends->findOne(['UserId' => $userId])['Friends'];

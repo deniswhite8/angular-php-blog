@@ -195,18 +195,8 @@
     @extend %horizontal-align;
     display: inline-block;
     overflow: hidden;
-    top: 0;
     @include size(211px 211px);
-    border-radius: 50%;
-    @include min-screen-height($iphone-height){
-        top: -92px;
-    }
-    &__img{
-        transition: all $td;
-        &:hover{
-            transform: rotate(360deg);
-        }
-    }
+    top: -32px;
 }
 
 .greeting{
